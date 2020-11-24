@@ -1,0 +1,14 @@
+---
+- hosts: app1
+  tasks:
+    - name: update apt package manager repositories cache
+      become: true
+      apt:
+       update_cache: yes
+    - name: install openjdk java
+      become: yes
+      apt:
+       name: "{{ item }}"   
+       state: present
+      with_items:
+       openjdk-8-jdk
